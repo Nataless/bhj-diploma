@@ -173,8 +173,10 @@ class TransactionsPage {
     const content = this.element.querySelector('.content');
     content.innerHTML = '';
 
-    data.forEach(item => {
-      content.innerHTML += this.getTransactionHTML(item);
-    });
-  }
+    Transaction.list({}, (err, response) => {
+      if (response && response.success) {
+        content.innerHTML = items.reduce((accumulator, item) => accumulator + this.getTransactionHTML(item));  
+      }
+   })
+ }
 }

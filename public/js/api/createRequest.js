@@ -30,4 +30,9 @@ const createRequest = (options = {}) => {
 
   xhr.addEventListener('load', () => {options.callback(null, xhr.response)});
   xhr.addEventListener('error', () => {options.callback(xhr.statusText, null)});
-};
+
+ };
+
+ createRequest(() => {
+  console.log('success');
+});
