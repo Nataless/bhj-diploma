@@ -32,19 +32,19 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    this.element.addEventListener('click', (event) => {
-      if (event.target.closest('.remove-account')) {
-        this.removeAccount();
+    this.element.addEventListener( 'click', event => {
+      const transactionButton = event.target.closest( '.transaction__remove' );
+      const accountButton = event.target.closest('.remove-account');
+      if (transactionButton) {
+        const {id} = transButton.dataset;
+        this.removeTransaction(id);
       }
-
-      let target = event.target;
-      
-      if (target.classList.contains('transaction__remove')) {
-        this.removeTransaction(target.dataset.id);
+      if (accountButton) {
+        this.removeAccount()
       }
-    })
+    });
   }
-
+  
   /**
    * Удаляет счёт. Необходимо показать диаголовое окно (с помощью confirm())
    * Если пользователь согласен удалить счёт, вызовите
